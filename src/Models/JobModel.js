@@ -5,10 +5,11 @@ const JobSchema = mongoose.Schema({
   job: { type: String, required: true },
   clientName: { type: String, required: true },
   clientPhoneNumber: { type: Number, required: true },
-  addressjobAddress: { type: String, required: true },
+  jobAddress: { type: String, required: true },
   description: { type: String, required: true },
   jobStatus: { type: String, required: true },
   jobNotes: { type: String, required: true },
+  createdDate: {type:Date, required:true}
 });
 
 module.exports = mongoose.model("Job", JobSchema);
