@@ -1,0 +1,146 @@
+_type: export
+__export_format: 4
+__export_date: 2022-08-30T04:41:36.211Z
+__export_source: insomnia.desktop.app:v2022.5.0
+resources:
+  - _id: req_2034ec32125b421eb6cfe773e104f4f0
+    parentId: wrk_bbb8b94b751d45aebdf56e8a1bf418f7
+    modified: 1661751938769
+    created: 1661751482965
+    url: http://localhost:5001/jobs
+    name: GET all jobs
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1661751482965
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_bbb8b94b751d45aebdf56e8a1bf418f7
+    parentId: null
+    modified: 1661824302548
+    created: 1661416095518
+    name: Fergus
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_1af52d61c35d454482049083465276d4
+    parentId: wrk_bbb8b94b751d45aebdf56e8a1bf418f7
+    modified: 1661751912079
+    created: 1661751456594
+    url: http://localhost:5001/jobs/61679189b54f48aa6588a7fd
+    name: GET a singe job
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1661751456594
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: true
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a1991d47ce504e4796a4a93811d73c33
+    parentId: wrk_bbb8b94b751d45aebdf56e8a1bf418f7
+    modified: 1661833831976
+    created: 1661416100242
+    url: http://localhost:5001/jobs
+    name: POST a new job
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        			"job": "Build a trellis",
+              "clientName": "Joe Blogg",
+              "clientPhoneNumber": 21345456,
+              "jobAddress": "123 Fake street",
+              "description":
+                "Build a fence and replace the retaining wall as it is falling apart",
+              "jobStatus": "active",
+              "jobNotes": "This is a sample note"
+            }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_d40ca2ec36fc4db8b919a9aa582346bf
+    authentication: {}
+    metaSortKey: -1661416100242
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_7a1cdb6dd51f472991d3eec2362a006f
+    parentId: wrk_bbb8b94b751d45aebdf56e8a1bf418f7
+    modified: 1661827645080
+    created: 1661757239453
+    url: http://localhost:5001/jobs/61679189b54f48aa6588a7fd
+    name: update the job
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"jobStatus": "boomerang"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_a1d7dfe2d01c44b58892e0a20599a10f
+    authentication: {}
+    metaSortKey: -1661416100192
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_3a117034ee7e1292ab11a32db545c817f7cfeb7d
+    parentId: wrk_bbb8b94b751d45aebdf56e8a1bf418f7
+    modified: 1661416095555
+    created: 1661416095555
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1661416095555
+    _type: environment
+  - _id: jar_3a117034ee7e1292ab11a32db545c817f7cfeb7d
+    parentId: wrk_bbb8b94b751d45aebdf56e8a1bf418f7
+    modified: 1661416095556
+    created: 1661416095556
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_32c9078274544354bba71a53b0499fb3
+    parentId: wrk_bbb8b94b751d45aebdf56e8a1bf418f7
+    modified: 1661416095524
+    created: 1661416095524
+    fileName: Xero
+    contents: ""
+    contentType: yaml
+    _type: api_spec
