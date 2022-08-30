@@ -3,9 +3,18 @@ const cors = require("cors");
 const app = express();
 const JobModel = require("./Models/JobModel");
 const { errors, Segments, Joi, celebrate } = require("celebrate");
+const {formatJob} = require("./formatJob")
 
 app.use(express.json());
 app.use(cors());
+
+const acceptableJobStatus = [
+  "scheduled",
+  "active",
+  "invoicing",
+  "to priced",
+  "completed",
+];
 
 app.post(
   "/jobs",
@@ -18,34 +27,42 @@ app.post(
       description: Joi.string().required(),
       jobStatus: Joi.string().required(),
       jobNotes: Joi.string().required(),
-      createdDate: Joi.date().required(),
     }),
   }),
   async (request, response, next) => {
     try {
-      const jobStatus = request.body.jobStatus
-       const job = new JobModel(request.body);
+      const jobStatus = request.body.jobStatus;
+      const job = new JobModel(request.body);
 
-      if (jobStatus === "scheduled" || jobStatus === "active" || jobStatus === "invoicing"|| jobStatus === "to priced" || jobStatus === "completed") {
-        response.status(201).send(job)
-        console.log(request.body.jobStatus)
+      if (acceptableJobStatus.includes(jobStatus)) {
+        await job.save();
+        response.status(201).send(formatJob(job));
       } else {
-        response.status(400).send({"error": "Please choose an accepted job status"})
-        
+        response.status(400).send({ Error: "please use an accepted job status" });
       }
-       await job.save();
-        response.status(201).send(job);
-        
-      
+
     } catch (error) {
       next(error);
     }
   }
 );
 
+app.patch("/jobs/:id", async (request, response, next) => {
+  try {
+    const {id} = request.params;
+    const updates = request.body;
+    const options = { new: true };
+
+    const job = await JobModel.findByIdAndUpdate(id, updates, options);
+    response.send(formatJob(job)).status(200);
+  } catch (error) {
+    next(error);
+  }
+});
+
 app.get("/jobs", async (request, response) => {
   const jobs = await JobModel.find({});
-  response.send(jobs).status(200);
+  response.send(jobs.map(formatJob)).status(200);
 });
 
 app.get("/jobs/:id", async (request, response) => {
